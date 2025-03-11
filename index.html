@@ -9,13 +9,27 @@
     <div class="container">
         <h1>Online Video Downloader</h1>
         <div class="input-container">
-            <input type="text" id="videoUrl" placeholder="Paste video URL here (Video/Story/Shorts)">
-            <select id="format">
-                <option value="mp4">MP4</option>
-                <option value="webm">WebM</option>
-                <option value="mkv">MKV</option>
-            </select>
-            <button onclick="checkUrl()">Download</button>
+            <div class="selectors">
+                <select id="platform" onchange="updatePlaceholder()">
+                    <option value="">Select Platform</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="threads">Threads</option>
+                </select>
+                <select id="contentType" onchange="updatePlaceholder()">
+                    <option value="">Select Content Type</option>
+                </select>
+                <select id="format">
+                    <option value="mp4">MP4</option>
+                    <option value="webm">WebM</option>
+                    <option value="mkv">MKV</option>
+                </select>
+            </div>
+            <div class="url-input">
+                <input type="text" id="videoUrl" placeholder="Select platform first...">
+                <button onclick="checkUrl()">Download</button>
+            </div>
         </div>
         <div id="result"></div>
         <div class="supported-sites">

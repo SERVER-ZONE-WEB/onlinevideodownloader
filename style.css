@@ -16,8 +16,27 @@ body {
 
 .input-container {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     margin: 20px 0;
+}
+
+.selectors {
+    display: flex;
+    gap: 10px;
+}
+
+.selectors select {
+    flex: 1;
+}
+
+.url-input {
+    display: flex;
+    gap: 10px;
+}
+
+.url-input input {
+    flex: 1;
 }
 
 input {

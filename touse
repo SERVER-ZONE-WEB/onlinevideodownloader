@@ -1,0 +1,14 @@
+To use this:
+
+Access admin panel at /adminpanel.html
+Login with password (default: 'admin123')
+Admin can download any format without restrictions
+For security, change the ADMIN_PASSWORD in both admin.js and server.js
+Admin downloads bypass the premium restrictions
+Note: This is a basic implementation. In production:
+
+Use secure password hashing
+Implement proper session management
+Use HTTPS
+Store credentials securely
+Add rate limiting
