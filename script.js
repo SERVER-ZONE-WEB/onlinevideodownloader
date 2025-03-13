@@ -128,14 +128,14 @@ function showPricingModal() {
     const currency = document.getElementById('currency').value;
     const prices = {
         USD: {
-            month: 4.99,
-            quarter: 12.99,
-            year: 39.99
+            month: .22,
+            quarter: .56,
+            year: 2.29
         },
         INR: {
-            month: 399,
-            quarter: 999,
-            year: 2999
+            month: 19,
+            quarter: 49,
+            year: 199
         }
     };
     
