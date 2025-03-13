@@ -1,7 +1,9 @@
 const express = require('express');
 const youtubedl = require('youtube-dl-exec');
+const cors = require('cors'); // Add CORS support
 const app = express();
 
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 app.use(express.static('./'));
 
