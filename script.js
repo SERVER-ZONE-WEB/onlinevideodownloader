@@ -195,7 +195,7 @@ function showDonationPopup() {
                         <div id="upiDetails" style="display: none;">
                             <p>UPI ID: your@upi</p>
                             <p>Or scan QR code:</p>
-                            <img src="upi-qr.png" alt="UPI QR Code" width="150">
+                            <img src="images/QR_Code.png" alt="UPI QR Code" width="150">
                         </div>
                         <button onclick="showUPIDetails()" class="donate-button">Proceed to Pay</button>
                     </div>
