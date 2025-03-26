@@ -1,0 +1,2 @@
++ CategoryInfo          : InvalidArgument: (:) [Remove-Item], ParameterBindingException
++ FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
