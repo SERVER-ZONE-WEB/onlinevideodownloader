@@ -1,6 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    line-height: 1.6;
     padding: 20px;
     background-color: #f0f2f5;
 }
@@ -8,17 +14,23 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+.platform-buttons {
+    margin: 20px 0;
+}
+
 .input-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .selectors {
@@ -39,9 +51,13 @@ body {
     flex: 1;
 }
 
+select, input, button {
+    padding: 10px;
+    font-size: 16px;
+}
+
 input {
     flex: 1;
-    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -68,24 +84,25 @@ button:hover {
 }
 
 select {
-    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: white;
 }
 
 .download-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     margin-top: 20px;
 }
 
 .download-button, .premium-button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
     display: block;
     text-align: center;
     text-decoration: none;
-    padding: 10px;
     background-color: #1a73e8;
     color: white;
     border-radius: 5px;
@@ -125,7 +142,6 @@ select {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 10px 20px;
     width: 100%;
 }
 

@@ -6,7 +6,7 @@ const platformContent = {
 };
 
 class VideoDownloader {
-    static API_URL = window.location.origin;
+    static API_URL = 'YOUR_NETLIFY_URL/.netlify/functions';
     static token = localStorage.getItem('authToken');
 
     static async validateUrl(url) {
@@ -72,7 +72,7 @@ function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    fetch('/api/login', {
+    fetch('/.netlify/functions/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
