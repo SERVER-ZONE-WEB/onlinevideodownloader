@@ -14,8 +14,13 @@ jobs:
         with:
           node-version: '18'
           
+      - name: Fix npm audit issues
+        run: |
+          npm audit fix --force
+          npm install --no-audit
+        
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --legacy-peer-deps
         
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
@@ -23,5 +28,5 @@ jobs:
           publish-dir: '.'
           production-branch: main
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
