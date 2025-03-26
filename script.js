@@ -43,6 +43,26 @@ class VideoDownloader {
 
 let authToken = localStorage.getItem('authToken');
 
+function setPlatform(platform) {
+    // Update select element
+    document.getElementById('platform').value = platform;
+    
+    // Update buttons
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`button[onclick="setPlatform('${platform}')"]`).classList.add('active');
+    
+    // Update placeholder
+    const urlInput = document.getElementById('videoUrl');
+    urlInput.placeholder = `Paste ${platform} URL here...`;
+    
+    // Scroll to input and focus
+    const container = document.querySelector('.container');
+    container.scrollIntoView({ behavior: 'smooth' });
+    urlInput.focus();
+}
+
 function updatePlaceholder() {
     const platform = document.getElementById('platform').value;
     const contentTypeSelect = document.getElementById('contentType');
@@ -66,6 +86,14 @@ function updatePlaceholder() {
     urlInput.placeholder = platform ? 
         `Paste ${platform} URL here...` : 
         'Select platform first...';
+        
+    // Update buttons
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    if (platform) {
+        document.querySelector(`button[onclick="setPlatform('${platform}')"]`).classList.add('active');
+    }
 }
 
 function login() {
@@ -177,36 +205,18 @@ function showDonationPopup() {
         const donationHTML = `
             <div class="donation-popup" id="donationPopup">
                 <div class="donation-content">
-                    <h3>Support Us! 🙏</h3>
-                    <p>Help us keep this service free and fast</p>
+                    <h3>Support Free Downloads! 🙏</h3>
+                    <p>Help us keep this service free and ad-free</p>
                     
                     <div class="donation-options">
-                        <button onclick="setCustomAmount(10)">₹10</button>
-                        <button onclick="setCustomAmount(20)">₹20</button>
-                        <button onclick="setCustomAmount(50)">₹50</button>
-                        <button onclick="setCustomAmount(100)">₹100</button>
-                        <div class="custom-amount">
-                            <input type="number" id="customAmount" placeholder="Custom amount">
-                            <span>₹</span>
-                        </div>
+                        <button onclick="closeDonationPopup()">Continue Free</button>
+                        <button onclick="window.open('https://buymeacoffee.com/yourlink')">Buy Me a Coffee ☕</button>
                     </div>
-
-                    <div class="upi-section">
-                        <div id="upiDetails" style="display: none;">
-                            <p>UPI ID: your@upi</p>
-                            <p>Or scan QR code:</p>
-                            <img src="images/QR_Code.png" alt="UPI QR Code" width="150">
-                        </div>
-                        <button onclick="showUPIDetails()" class="donate-button">Proceed to Pay</button>
-                    </div>
-
-                    <button onclick="closeDonationPopup()" class="close-button">Maybe Later</button>
                 </div>
             </div>
         `;
-
         document.body.insertAdjacentHTML('beforeend', donationHTML);
-    }, 1000); // Show popup 1 second after download starts
+    }, 1000);
 }
 
 function setCustomAmount(amount) {
@@ -297,4 +307,37 @@ function selectPlatform(platform) {
     updatePlaceholder();
     // Scroll to the input section
     document.querySelector('.input-container').scrollIntoView({ behavior: 'smooth' });
+}
+
+function downloadVideo() {
+    const url = document.getElementById('videoUrl').value;
+    const quality = document.getElementById('quality').value;
+    const result = document.getElementById('result');
+    
+    if (!url) {
+        result.innerHTML = '<p style="color: red;">Please enter a URL</p>';
+        return;
+    }
+
+    // Basic URL validation
+    if (!url.includes('youtube.com') && 
+        !url.includes('youtu.be') && 
+        !url.includes('instagram.com') && 
+        !url.includes('facebook.com')) {
+        result.innerHTML = '<p style="color: red;">Please enter a valid YouTube, Instagram or Facebook URL</p>';
+        return;
+    }
+
+    result.innerHTML = '<p style="color: green;">Processing your request...</p>';
+    
+    // Simulate download process
+    setTimeout(() => {
+        result.innerHTML = `
+            <div class="download-success">
+                <h3>Download Started!</h3>
+                <p>Your download will begin shortly...</p>
+            </div>
+        `;
+        showDonationPopup();
+    }, 2000);
 }
