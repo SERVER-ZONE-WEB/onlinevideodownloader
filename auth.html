@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup - Video Downloader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-options">
+            <button onclick="switchTab('login')" class="tab active" id="loginTab">Login</button>
+            <button onclick="switchTab('signup')" class="tab" id="signupTab">Sign Up</button>
+        </div>
+
+        <div id="loginForm" class="auth-form">
+            <div class="social-login">
+                <button onclick="loginWithGoogle()">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">
+                    Continue with Google
+                </button>
+                <button onclick="loginWithFacebook()">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook">
+                    Continue with Facebook
+                </button>
+            </div>
+            <div class="divider">or</div>
+            <input type="email" placeholder="Email" id="loginEmail">
+            <input type="password" placeholder="Password" id="loginPassword">
+            <button onclick="loginWithEmail()">Login</button>
+        </div>
+
+        <div id="signupForm" class="auth-form hidden">
+            <div class="social-login">
+                <button onclick="signupWithGoogle()">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">
+                    Sign up with Google
+                </button>
+                <button onclick="signupWithFacebook()">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook">
+                    Sign up with Facebook
+                </button>
+            </div>
+            <div class="divider">or</div>
+            <input type="text" placeholder="Full Name" id="signupName">
+            <input type="email" placeholder="Email" id="signupEmail">
+            <input type="password" placeholder="Password" id="signupPassword">
+            <input type="tel" placeholder="Mobile Number" id="signupMobile">
+            <button onclick="signupWithEmail()">Create Account</button>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -2,25 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Downloader</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="main-header">
+        <a href="/" class="logo-container">
+            <img src="logo.png" alt="Video Downloader" class="logo">
+            <h1>VidDown Pro</h1>
+        </a>
+        <div class="auth-buttons">
+            <button onclick="window.location.href='auth.html'" class="login-btn">Login</button>
+            <button onclick="window.location.href='auth.html?tab=signup'" class="signup-btn">Sign Up</button>
+        </div>
+    </header>
+
     <div class="container">
         <h1>Online Video Downloader</h1>
         <div class="input-container">
             <div class="selectors">
-                <select id="platform" onchange="updatePlaceholder()">
+                <select id="platform" title="Select a platform" onchange="updatePlaceholder()">
                     <option value="">Select Platform</option>
                     <option value="youtube">YouTube</option>
                     <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
                     <option value="threads">Threads</option>
                 </select>
-                <select id="contentType">
+                <select id="contentType" title="Select a content type">
                     <option value="">Select Content Type</option>
                 </select>
-                <select id="format">
+                <select id="format" title="Select a format">
                     <option value="mp4">MP4</option>
                     <option value="webm">WebM</option>
                     <option value="mkv">MKV</option>
@@ -38,14 +50,47 @@
         </div>
         <div class="premium-banner">
             <h3>Get Premium Access</h3>
-            <p>Download in HD quality (360p+)</p>
-            <select id="currency">
-                <option value="USD">USD ($)</option>
-                <option value="INR">INR (₹)</option>
-            </select>
-            <button onclick="showPricingModal()">Upgrade Now</button>
+            <p>Download in HD quality (720p/1080p)</p>
+            <button onclick="redirectToAuth()" class="get-premium-btn">Get Premium Access</button>
+            <p class="premium-note">Login required for HD quality downloads</p>
         </div>
     </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Supported Platforms</h3>
+                <div class="platform-links">
+                    <a href="#" onclick="selectPlatform('youtube')">YouTube</a>
+                    <a href="#" onclick="selectPlatform('instagram')">Instagram</a>
+                    <a href="#" onclick="selectPlatform('facebook')">Facebook</a>
+                    <a href="#" onclick="selectPlatform('threads')">Threads</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Supported Content Types</h3>
+                <ul>
+                    <li>YouTube: Videos, Shorts, Live Streams</li>
+                    <li>Instagram: Posts, Stories, Reels, IGTV</li>
+                    <li>Facebook: Videos, Stories, Reels</li>
+                    <li>Threads: Posts & Videos</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Features</h3>
+                <ul>
+                    <li>HD Quality Downloads</li>
+                    <li>Multiple Format Support</li>
+                    <li>No Registration Required for Basic Use</li>
+                    <li>Fast & Reliable Service</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 VidDown Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
