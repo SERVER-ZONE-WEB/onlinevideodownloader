@@ -57,11 +57,37 @@ body {
 }
 
 .input-group {
-    margin: 20px 0;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.wide-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.download-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+    background: #1557b0;
 }
 
 .selectors {
@@ -121,6 +147,22 @@ select {
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: white;
+    width: auto;
+    min-width: 150px;
+}
+
+input[type="url"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin: 0;
+}
+
+.input-group button {
+    width: auto;
+    min-width: 120px;
 }
 
 .download-options {
@@ -299,6 +341,37 @@ select {
     margin-top: 10px;
 }
 
+.upi-details {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 15px auto;
+    display: block;
+}
+
+.continue-btn {
+    background: #1a73e8;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.small {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
 .premium-popup {
     position: fixed;
     top: 0;
@@ -457,6 +530,36 @@ select {
     color: #1a73e8;
 }
 
+.platform-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.platform-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.platform-row a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid white;
+    border-radius: 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    text-align: center;
+}
+
+.platform-row a:hover {
+    background: white;
+    color: #1a73e8;
+}
+
 .footer-bottom {
     text-align: center;
     margin-top: 30px;
@@ -486,6 +589,14 @@ select {
     
     .platform-links {
         justify-content: center;
+    }
+
+    .input-group {
+        padding: 0 10px;
+    }
+    
+    select, button {
+        width: 100%;
     }
 }
 

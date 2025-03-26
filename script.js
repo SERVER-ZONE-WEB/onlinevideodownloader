@@ -2,7 +2,9 @@ const platformContent = {
     youtube: ['Video', 'Short', 'Live'],
     instagram: ['Post', 'Story', 'Reel', 'Live'],
     facebook: ['Video', 'Story', 'Reel'],
-    threads: ['Post', 'Video']
+    twitter: ['Tweet', 'Video', 'Space'],
+    threads: ['Post', 'Video'],
+    linkedin: ['Post', 'Video', 'Article']
 };
 
 class VideoDownloader {
@@ -65,35 +67,32 @@ function setPlatform(platform) {
 
 function updatePlaceholder() {
     const platform = document.getElementById('platform').value;
+    const urlInput = document.getElementById('videoUrl');
+    
+    urlInput.placeholder = platform ? 
+        `Paste any ${platform} URL here...` : 
+        'Select platform first...';
+}
+
+function updateContentTypes() {
+    const platform = document.getElementById('platform').value;
     const contentTypeSelect = document.getElementById('contentType');
     const urlInput = document.getElementById('videoUrl');
     
     contentTypeSelect.innerHTML = '<option value="">Select Content Type</option>';
+    contentTypeSelect.disabled = !platform;
     
-    // Only update content types if platform is selected
     if (platform && platformContent[platform]) {
         platformContent[platform].forEach(type => {
-            const value = type.toLowerCase();
             contentTypeSelect.innerHTML += `
-                <option value="${value}">${type}</option>
+                <option value="${type.toLowerCase()}">${type}</option>
             `;
         });
-        contentTypeSelect.disabled = false;
-    } else {
-        contentTypeSelect.disabled = true;
     }
     
     urlInput.placeholder = platform ? 
-        `Paste ${platform} URL here...` : 
+        `Paste ${platform} ${contentTypeSelect.value || ''} URL here...` : 
         'Select platform first...';
-        
-    // Update buttons
-    document.querySelectorAll('.platform-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    if (platform) {
-        document.querySelector(`button[onclick="setPlatform('${platform}')"]`).classList.add('active');
-    }
 }
 
 function login() {
@@ -201,22 +200,25 @@ function displayDownloadOptions(data) {
 }
 
 function showDonationPopup() {
-    setTimeout(() => {
-        const donationHTML = `
-            <div class="donation-popup" id="donationPopup">
-                <div class="donation-content">
-                    <h3>Support Free Downloads! 🙏</h3>
-                    <p>Help us keep this service free and ad-free</p>
-                    
-                    <div class="donation-options">
-                        <button onclick="closeDonationPopup()">Continue Free</button>
-                        <button onclick="window.open('https://buymeacoffee.com/yourlink')">Buy Me a Coffee ☕</button>
-                    </div>
+    const donationHTML = `
+        <div class="donation-popup" id="donationPopup">
+            <div class="donation-content">
+                <h3>Support Us! 🙏</h3>
+                <p>Help us keep this service free</p>
+                
+                <div class="upi-details">
+                    <p>UPI ID: your@upi</p>
+                    <img src="images/qr-code.png" alt="UPI QR Code" class="qr-code">
+                    <p class="small">Scan QR code or use UPI ID</p>
+                </div>
+                
+                <div class="donation-buttons">
+                    <button onclick="closeDonationPopup()" class="continue-btn">Continue</button>
                 </div>
             </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', donationHTML);
-    }, 1000);
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', donationHTML);
 }
 
 function setCustomAmount(amount) {
@@ -310,21 +312,33 @@ function selectPlatform(platform) {
 }
 
 function downloadVideo() {
+    const platform = document.getElementById('platform').value;
+    const contentType = document.getElementById('contentType').value;
     const url = document.getElementById('videoUrl').value;
-    const quality = document.getElementById('quality').value;
     const result = document.getElementById('result');
+    
+    if (!platform || !contentType) {
+        result.innerHTML = '<p style="color: red;">Please select platform and content type</p>';
+        return;
+    }
     
     if (!url) {
         result.innerHTML = '<p style="color: red;">Please enter a URL</p>';
         return;
     }
 
-    // Basic URL validation
-    if (!url.includes('youtube.com') && 
-        !url.includes('youtu.be') && 
-        !url.includes('instagram.com') && 
-        !url.includes('facebook.com')) {
-        result.innerHTML = '<p style="color: red;">Please enter a valid YouTube, Instagram or Facebook URL</p>';
+    // Platform-specific URL validation
+    const urlPatterns = {
+        youtube: ['youtube.com', 'youtu.be'],
+        instagram: ['instagram.com'],
+        facebook: ['facebook.com', 'fb.watch'],
+        twitter: ['twitter.com', 'x.com'],
+        threads: ['threads.net'],
+        linkedin: ['linkedin.com']
+    };
+
+    if (!urlPatterns[platform].some(pattern => url.includes(pattern))) {
+        result.innerHTML = `<p style="color: red;">Please enter a valid ${platform} URL</p>`;
         return;
     }
 
@@ -335,9 +349,48 @@ function downloadVideo() {
         result.innerHTML = `
             <div class="download-success">
                 <h3>Download Started!</h3>
-                <p>Your download will begin shortly...</p>
+                <p>Your ${platform} ${contentType} will begin downloading shortly...</p>
             </div>
         `;
         showDonationPopup();
     }, 2000);
+}
+
+function startDownload() {
+    const platform = document.getElementById('platform').value;
+    const url = document.getElementById('videoUrl').value;
+    const result = document.getElementById('result');
+
+    if (!platform || !url) {
+        result.innerHTML = '<p style="color: red;">Please select platform and enter URL</p>';
+        return;
+    }
+
+    // Platform-specific URL validation
+    const urlPatterns = {
+        youtube: ['youtube.com', 'youtu.be'],
+        instagram: ['instagram.com'],
+        facebook: ['facebook.com', 'fb.watch'],
+        twitter: ['twitter.com', 'x.com'],
+        threads: ['threads.net'],
+        linkedin: ['linkedin.com']
+    };
+
+    if (!urlPatterns[platform].some(pattern => url.includes(pattern))) {
+        result.innerHTML = `<p style="color: red;">Please enter a valid ${platform} URL</p>`;
+        return;
+    }
+
+    result.innerHTML = '<p style="color: blue;">Processing your request... Please wait</p>';
+
+    // Simulate download process (replace with actual download logic)
+    setTimeout(() => {
+        result.innerHTML = `
+            <div class="download-success">
+                <h3>✅ Download Started!</h3>
+                <p>Your content will begin downloading shortly...</p>
+            </div>
+        `;
+        showDonationPopup();
+    }, 1500);
 }

@@ -17,21 +17,18 @@
     <div class="container">
         <h1>Free Video Downloader</h1>
         <div class="input-group">
+            <label for="platform" class="sr-only">Choose a platform:</label>
             <select id="platform" onchange="updatePlaceholder()">
                 <option value="">Select Platform</option>
-                <option value="youtube">YouTube</option>
-                <option value="instagram">Instagram</option>
-                <option value="facebook">Facebook</option>
+                <option value="youtube">YouTube (Video/Short/Live)</option>
+                <option value="instagram">Instagram (Post/Reel/Story)</option>
+                <option value="facebook">Facebook (Video/Story/Reel)</option>
+                <option value="twitter">Twitter (Video/Space)</option>
+                <option value="threads">Threads (Post/Video)</option>
+                <option value="linkedin">LinkedIn (Video/Post)</option>
             </select>
-            <input type="url" id="videoUrl" placeholder="Select platform first...">
-            <label for="quality">Select Quality:</label>
-            <select id="quality">
-                <option value="auto">Best Quality</option>
-                <option value="720">720p</option>
-                <option value="480">480p</option>
-                <option value="360">360p</option>
-            </select>
-            <button onclick="downloadVideo()">Download</button>
+            <input type="url" id="videoUrl" class="wide-input" placeholder="Paste URL here...">
+            <button onclick="startDownload()" class="download-btn">Download</button>
         </div>
         <div id="result"></div>
     </div>
@@ -46,19 +43,27 @@
                     <li>✓ No Registration</li>
                     <li>✓ Fast Download</li>
                     <li>✓ No Watermark</li>
+                    <li>✓ Unlimited Downloads</li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Supported Platforms</h3>
                 <div class="platform-links">
-                    <a href="#" onclick="setPlatform('youtube'); return false;">YouTube</a>
-                    <a href="#" onclick="setPlatform('instagram'); return false;">Instagram</a>
-                    <a href="#" onclick="setPlatform('facebook'); return false;">Facebook</a>
+                    <div class="platform-row">
+                        <a href="#" onclick="setPlatform('youtube'); return false;">YouTube</a>
+                        <a href="#" onclick="setPlatform('instagram'); return false;">Instagram</a>
+                        <a href="#" onclick="setPlatform('facebook'); return false;">Facebook</a>
+                    </div>
+                    <div class="platform-row">
+                        <a href="#" onclick="setPlatform('twitter'); return false;">Twitter</a>
+                        <a href="#" onclick="setPlatform('threads'); return false;">Threads</a>
+                        <a href="#" onclick="setPlatform('linkedin'); return false;">LinkedIn</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Video Downloader. All rights reserved.</p>
+            <p>&copy; 2025 Video Downloader. All rights reserved.</p>
         </div>
     </footer>
     <script src="script.js"></script>
